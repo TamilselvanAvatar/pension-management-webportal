@@ -1,0 +1,101 @@
+<div class="container">
+    <form [formGroup]="pensionerDetails" (ngSubmit)="onSubmit()">
+        <div class="row mt-lg-3">
+            <div class="col-6 bg-outline-success">
+                <p class="text-center fw-bold">Personal Details</p>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="name">Name</label>
+                    <input class="form-control" type="text" id="name" [readonly]="pensioner != undefined"
+                        formControlName="pensionerName">
+                </div>
+                <p class="text-danger fst-italic fw-bold text-center"
+                    *ngIf="(pensionerDetails.controls.pensionerName.touched && pensionerDetails.controls.pensionerName?.errors != null) ">
+                    Name should be greater than 3 Characters
+                </p>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="aadhaar">Aadhaar Number </label>
+                    <input class="form-control" type="number" id="aadhaar" [readonly]="pensioner != undefined"
+                        formControlName="aadhaar">
+                </div>
+                <p class="text-danger fst-italic fw-bold text-center"
+                    *ngIf="(pensionerDetails.controls.aadhaar.touched && pensionerDetails.controls.aadhaar?.errors != null) ">
+                    Aadhaar should be 12 digits
+                </p>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="pan">PAN Number </label>
+                    <input class="form-control" type="text" id="pan" [readonly]="pensioner != undefined"
+                        formControlName="pan">
+                </div>
+                <p class="text-danger fst-italic fw-bold text-center"
+                    *ngIf="(pensionerDetails.controls.pan.touched && pensionerDetails.controls.pan?.errors != null) ">
+                    PAN should be 10 Characters
+                </p>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="dob">DOB </label>
+                    <input class="form-control" type="date" id="dob" [readonly]="pensioner != undefined"
+                        formControlName="dob">
+                </div>
+                <p class="text-danger fst-italic fw-bold text-center"
+                    *ngIf="(pensionerDetails.controls.dob.touched && pensionerDetails.controls.dob?.errors != null) ">
+                    DOB Required
+                </p>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="salary">Salary </label>
+                    <input class="form-control" type="number" id="salary" formControlName="salaryEarned">
+                </div>
+                <p class="text-danger fst-italic fw-bold text-center"
+                    *ngIf="(pensionerDetails.controls.salaryEarned.touched && pensionerDetails.controls.salaryEarned?.errors != null) ">
+                    Salary Required
+                </p>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="allowances">Allowances </label>
+                    <input class="form-control" type="number" id="allowances" formControlName="allowances">
+                </div>
+                <p class="text-danger fst-italic fw-bold text-center"
+                    *ngIf="(pensionerDetails.controls.allowances.touched && pensionerDetails.controls.allowances?.errors != null) ">
+                    Allowances Required
+                </p>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="pensiontype">Pension Type </label>
+                    <select class="form-select" id="pensiontype" formControlName="typeofPension">
+                        <option selected value="SELF">SELF</option>
+                        <option value="FAMILY">FAMILY</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-6 bg-outline-succes">
+                <p class="text-center fw-bold ">Bank Details</p>
+                <div class="input-group mb-3">
+                    <label class="input-group-text " for="bankname">Bank Name</label>
+                    <select class="form-select" id="bankname" formControlName="bankName">
+                        <ng-container *ngFor="let bank of bankName">
+                            <option [value]="bank">{{ bank }}</option>
+                        </ng-container>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="banktype">Bank Type </label>
+                    <select class="form-select" id="banktype" formControlName="bankType">
+                        <option selected value="PUBLIC">PUBLIC</option>
+                        <option value="PRIVATE">PRIVATE</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="account">Account Number </label>
+                    <input class="form-control" type="number" id="account" [readonly]="pensioner != undefined"
+                        formControlName="accountNumber">
+                </div>
+                <p class="text-danger fst-italic fw-bold text-center"
+                    *ngIf="(pensionerDetails.controls.accountNumber.touched && pensionerDetails.controls.accountNumber?.errors != null) ">
+                    AccountNumber should atleast 6 digit
+                </p>
+            </div>
+        </div>
+        <div class="row mt-lg-3 justify-content-center ">
+            <div class="col align-self-center">
+                <button type="submit" class="btn btn-primary  w-25"
+                    [disabled]="(pensionerDetails.status === 'INVALID' || pensionerDetails.touched == false)">{{ text }}</button>
+            </div>
+        </div>
+    </form>
+</div>

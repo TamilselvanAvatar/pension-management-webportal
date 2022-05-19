@@ -1,0 +1,31 @@
+<form #loginUser="ngForm" (ngSubmit)="onClickSubmit(loginUser)">
+
+    <div class="form-group m-3" *ngIf="errorMessage != '' ">
+        <p class=" fst-italic fw-bold text-center" ngClass="{{ message ? 'text-success':'text-danger' }}">{{errorMessage}}</p>
+    </div>
+    
+    <div class="form-group m-3">
+        <label for="userId">User ID</label>
+        <input type="text" class="form-control" id="userId" aria-describedby="userIdHelp" placeholder="Provide User ID"
+            ngModel name="userId">
+        <small id="userIdHelp" class="form-text text-muted"></small>
+    </div>
+
+    <div class="form-group m-3">
+        <label for="Password1">Password</label>
+        <input type="password" class="form-control" id="Password1" value="" placeholder="Enter Password" ngModel
+            name="password">
+    </div>
+
+    <div class="form-group m-3" *ngIf="params">
+        <label for="Password2">Confirm Password</label>
+        <input type="password" class="form-control" id="Password2" value="" placeholder="Re-Enter Password" ngModel
+            name="confirmPassword">
+    </div>
+
+    <div class="form-group m-3">
+        <button type="submit" class="col-4 btn btn-primary w-25 " >{{type}}</button>
+        <a routerLink="/" class="m-2 btn btn-info w-25">Back</a>
+    </div>
+
+</form>

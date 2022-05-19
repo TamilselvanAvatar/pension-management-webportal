@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-md " style="background-color: #a9b0b5; border-radius: 12px;">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold fst-italic" >Pension</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link fst-italic" aria-current="page" routerLink="/pension/pension-calculation">Pension Calculation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fst-italic" routerLink="/pension/save-pensioner">Pension Details</a>
+          </li>
+        </ul>
+        <form class="d-flex" >
+          <a class="btn btn-outline-dark" routerLink="/" (click) = "onSignOut()">Sign Out</a>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <router-outlet></router-outlet>

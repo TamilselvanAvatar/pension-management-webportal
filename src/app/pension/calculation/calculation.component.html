@@ -1,0 +1,46 @@
+<div class="container">
+    <form class=" form-control mt-lg-3  mt-md-3" #aadhaar="ngForm" (ngSubmit)="onSubmitAadhaar(aadhaar)">
+        <div class="row">
+            <div class="col fw-bold text-center fst-italic fst-normal m-auto">Aadhaar Number</div>
+            <div class="col">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="aadhaarNumber" ngModel />
+                </div>
+            </div>
+            <div class="col"><button class="btn btn-outline-success">Calculate</button></div>
+        </div>
+    </form>
+</div>
+<div  *ngIf="result && !error" class="card border-success bg-aqua w-100 mx-auto mt-lg-4 mt-md-3" style="max-width: 18rem;">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-8 fst-italic fw-bold">
+                Pension Amount
+            </div>
+            <div class="col-1 ">
+                :
+            </div>
+            <div class="col text-success">
+                {{pensionAmount}}
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <div class="col-8 fst-italic fw-bold">
+                Bank Service Charge
+            </div>
+            <div class="col-1 ">
+                :
+            </div>
+            <div class="col text-success">
+                {{bankServiceCharge}}
+            </div>
+        </div>
+    </div>
+</div>
+<div  *ngIf="error" class="mx-auto " style="max-width: 50%; border-radius: 12px;">
+   <div class="text-danger fst-italic fw-bold text-center" style="margin-top: 5% ; background-color: #ebbec2" >
+       {{errorMessage}}
+   </div>
+</div>
