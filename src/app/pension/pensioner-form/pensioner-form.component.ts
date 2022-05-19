@@ -19,6 +19,8 @@ export class PensionerFormComponent implements OnInit {
 
   text: string;
 
+  message: string;
+
   pensionerDetails = new FormGroup({
     pensionerName: new FormControl(this.pensioner?.name, [
       Validators.required,
@@ -61,6 +63,8 @@ export class PensionerFormComponent implements OnInit {
     ),
   });
 
+  enable: boolean;
+
   constructor(private pensionService: PensionAllService) {}
 
   ngOnInit(): void {
@@ -88,10 +92,19 @@ export class PensionerFormComponent implements OnInit {
         .savePensionerDetails(GlobalComponent.token, this.pensioner)
         .subscribe(
           (data) => {
-            console.log(data);
+            if (data.message === 'Saved') {
+              this.message = 'Saved Pensioner Successfully';
+              this.enable = true;
+              setTimeout(()=>{this.enable = false},10000)
+            }
           },
           (err) => {
-            console.log(err);
+            if (err.status === 500 ) {
+              this.message = 'Not Saved Pensioner ';
+            }
+            else{
+              this.message = "Server Error"
+            }
           }
         );
     }
@@ -100,10 +113,19 @@ export class PensionerFormComponent implements OnInit {
         .updatePensionerDetails(GlobalComponent.token, this.pensioner)
         .subscribe(
           (data) => {
-            console.log(data);
+            if (data.message === 'Updated') {
+              this.message = 'Updated Pensioner Successfully';
+              this.enable = true;
+              setTimeout(()=>{this.enable = false},1000)
+            }
           },
           (err) => {
-            console.log(err);
+            if (err.status === 500) {
+              this.message = 'Not Updated Pensioner ';
+            }
+            else{
+              this.message = "Server Error"
+            }
           }
         );
     }

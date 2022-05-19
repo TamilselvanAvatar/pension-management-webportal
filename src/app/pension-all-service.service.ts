@@ -13,7 +13,7 @@ import { pluck } from 'rxjs/operators';
 export class PensionAllService {
   private urlPensioner = 'http://localhost:8000';
   private urlProcess = 'http://localhost:8100';
-   private urlAuth = 'http://localhost:8200';
+  private urlAuth = 'http://localhost:8200';
   // private urlAuth = 'http://pensionauthservicerevised-env.eba-xxhwvahp.us-east-1.elasticbeanstalk.com';
 
   constructor(private httpClient: HttpClient) {}
@@ -27,7 +27,7 @@ export class PensionAllService {
       .pipe(pluck('token'));
   }
 
-  doRegister(userName: string, password: string) {
+  doRegister(userName: string, password: string): any {
     return this.httpClient.post(this.urlAuth + '/register', {
       userName: userName,
       password: password,

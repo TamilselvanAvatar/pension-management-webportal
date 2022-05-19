@@ -5,9 +5,10 @@ import { HomeComponent } from './home/home.component';
 import { PensionComponent } from './pension/pension.component';
 import { CalculationComponent } from './pension/calculation/calculation.component';
 import { PensionerFormComponent } from './pension/pensioner-form/pensioner-form.component';
+import { DeletePensionerComponent } from './pension/delete-pensioner/delete-pensioner.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginDetailComponent },
+  { path: 'signup', component: LoginDetailComponent },
   { path: 'register', component: LoginDetailComponent },
   {
     path: 'pension',
@@ -15,6 +16,7 @@ const routes: Routes = [
     children: [
       { path: 'pension-calculation', component: CalculationComponent },
       { path: 'save-pensioner', component: PensionerFormComponent },
+      { path: 'delete-pensioner', component: DeletePensionerComponent },
     ],
   },
   { path: '', component: HomeComponent },

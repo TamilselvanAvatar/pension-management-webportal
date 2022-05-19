@@ -1,7 +1,7 @@
 <form #loginUser="ngForm" (ngSubmit)="onClickSubmit(loginUser)">
 
-    <div class="form-group m-3" *ngIf="errorMessage != '' ">
-        <p class=" fst-italic fw-bold text-center" ngClass="{{ message ? 'text-success':'text-danger' }}">{{errorMessage}}</p>
+    <div class="form-group m-3" *ngIf=" errorMessage != '' ">
+        <p class=" fst-italic fw-bold text-center" ngClass="{{ message ? 'text-success':'text-danger' }}" >{{errorMessage}}</p>
     </div>
     
     <div class="form-group m-3">

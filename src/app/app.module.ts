@@ -14,6 +14,7 @@ import { PensionComponent } from './pension/pension.component';
 import { CalculationComponent } from './pension/calculation/calculation.component';
 import { PensionerFormComponent } from './pension/pensioner-form/pensioner-form.component';
 import { GlobalComponent } from './global.component';
+import { DeletePensionerComponent } from './pension/delete-pensioner/delete-pensioner.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { GlobalComponent } from './global.component';
     PensionComponent,
     CalculationComponent,
     PensionerFormComponent,
+    DeletePensionerComponent,
   ],
   imports: [
     BrowserModule,

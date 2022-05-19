@@ -1,0 +1,14 @@
+<div class="container">
+     <div class="container m-auto">
+         <p class="m-3 text-center fst-italic " [ngClass] = "  enable  ? 'text-success fw-bold' : 'text-danger fw-bold' ">{{message}}</p>
+        <form #aadhaar="ngForm" (ngSubmit)="onDelete(aadhaar)" *ngIf="!enable">
+            <div class="form-group m-3">
+                <label for="aadhaar">Aadhaar Number</label>
+                <input type="number" class="form-control w-25" id="aadhaar" placeholder="Enter Aadhaar"  ngModel name="number">
+            </div>
+            <div class="form-group m-3">
+                <button type="submit" class="col-4 btn btn-danger w-25 " >Delete</button>
+            </div>
+        </form>
+    </div>
+</div>

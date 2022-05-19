@@ -4,17 +4,15 @@ import { GlobalComponent } from '../global.component';
 @Component({
   selector: 'app-pension',
   templateUrl: './pension.component.html',
-  styleUrls: ['./pension.component.css']
+  styleUrls: ['./pension.component.css'],
 })
 export class PensionComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  onSignOut() {
+    GlobalComponent.pensioner = undefined;
+    GlobalComponent.token = undefined;
   }
-
-  onSignOut(){
-    GlobalComponent.token ="";
-  }
-
 }

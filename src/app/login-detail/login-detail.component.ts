@@ -13,7 +13,7 @@ import { PensionAllService } from '../pension-all-service.service';
 export class LoginDetailComponent implements OnInit {
   params = false;
   type = 'Sign In';
-  errorMessage = ""
+  errorMessage = '';
   message: boolean = false;
   constructor(
     private router: Router,
@@ -26,44 +26,62 @@ export class LoginDetailComponent implements OnInit {
   }
   onClickSubmit(loginUser: NgForm) {
     let { userId, password, confirmPassword } = loginUser.form.value;
-    let disabled = !(password?.length < 4 || userId?.length < 4 )
-
-    if (confirmPassword == undefined && this.type === "Sign In" ) {
-      disabled && this.authSerivice
-        .gettoken(userId, password)
-        .subscribe((token: string) => (GlobalComponent.token = token) , (error) => {
-           this.errorMessage = error?.message
-           if(error.statusText == "OK"){
-            this.errorMessage= error?.error?.message
-           }
-          });
-        !disabled && (this.errorMessage = " UserId or Password Should not empty " );
-      ( GlobalComponent.token != "" &&  this.router.navigate(['/pension']) );
-    }
-    if (confirmPassword != undefined && this.type === "Submit" ){
-      this.message=false
-      
-      if(password != confirmPassword){
-        this.errorMessage = "Password should equal to Confirm Password "
-      }
-      else{
-        disabled && confirmPassword.length >= 4 && this.authSerivice.doRegister(userId, password).subscribe((data)=>{
-         if(data != undefined){
-          this.errorMessage = "Successfully Registered"
-          this.message=true;
-         }
-        },(error)=>{
-          console.log(error)
-          if(error?.error?.message === "Not Register"){
-            this.errorMessage = "User ID already taken "
-          }
-        })
-        !disabled && confirmPassword.length < 4 && (this.errorMessage = " UserId and Password Should not empty and length greater than or equal 4" );
-  
-      }
-    }
-
+    console.log(loginUser);
     
+    if (userId?.length > 3 && password?.length > 3 && this.type === 'Sign In') {
+      this.authSerivice.gettoken(userId, password).subscribe(
+        (token: string) => (GlobalComponent.token = token),
+        (error) => {
+          if (error.statusText == 'OK') {
+            this.errorMessage = error?.error?.message;
+          } else {
+            this.errorMessage = 'Server Error';
+          }
+        }
+      );
+      GlobalComponent.token != '' && this.router.navigate(['/pension']);
+    }
+
+    if (
+      userId?.length > 3 &&
+      password != "" &&
+      password === confirmPassword &&
+      this.type === 'Submit'
+    ) {
+      this.authSerivice.doRegister(userId, password).subscribe(
+        (data) => {
+          if (data != undefined && data?.message === "Register" ) {
+            this.errorMessage = 'Successfully Registered';
+            this.message = true;
+          }
+          else{
+            this.errorMessage = 'User ID already taken ';
+          }
+        },
+        (error) => {
+          this.errorMessage = 'Server Error';
+        }
+      );
+    }
+
+    if (
+      this.type === 'Submit' &&
+      password?.length > 3 &&
+      password != confirmPassword
+    ) {
+      this.errorMessage = 'Password should equal to Confirm Password ';
+    }
+
+    if (userId?.length <= 3 || password?.length <= 3) {
+      this.errorMessage =
+        'UserId and Password Should be greater than or equal 4 Characters';
+    }
+
+    if(userId === "" || password === "" || confirmPassword === ""){
+      this.errorMessage = "UserId and Password Should not empty"
+    }
+
+    setTimeout(()=>{this.errorMessage = '', this.message=false} , 3000)
 
   }
 }
