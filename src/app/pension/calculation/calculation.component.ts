@@ -18,11 +18,13 @@ export class CalculationComponent implements OnInit {
 
   constructor(private pensionService: PensionAllService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    GlobalComponent.pensioner=undefined;
+  }
 
   errorHandler(err) {
-    if (err?.error?.error) {
-      this.error = true;
+    this.error = true;
+    if (err?.error?.error === true) {
       this.errorMessage = 'Aadhaar Number is not present in database';
     } else {
       this.errorMessage = 'Server Error';
@@ -50,13 +52,13 @@ export class CalculationComponent implements OnInit {
                   this.errorHandler(err);
                 }
               );
+
+            this.result = true;
           },
           (err) => {
             this.errorHandler(err);
           }
         );
-
-      this.result = true;
     } else {
       this.error = true;
       this.errorMessage = `Aadhaar Number Should be 12 digit Number`;

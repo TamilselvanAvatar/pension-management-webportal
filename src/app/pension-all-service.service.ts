@@ -11,10 +11,16 @@ import { pluck } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class PensionAllService {
-  private urlPensioner = 'http://localhost:8000';
-  private urlProcess = 'http://localhost:8100';
   private urlAuth = 'http://localhost:8200';
-  // private urlAuth = 'http://pensionauthservicerevised-env.eba-xxhwvahp.us-east-1.elasticbeanstalk.com';
+  //private urlProcess = 'http://localhost:8100';
+  // private urlPensioner = 'http://localhost:8000';
+
+  // private urlAuth =
+  //   'http://pensionauthservicerevised-env.eba-xxhwvahp.us-east-1.elasticbeanstalk.com';
+  private urlProcess =
+    'http://pensionprocessservice-env.eba-j8u28apb.us-east-1.elasticbeanstalk.com';
+  private urlPensioner =
+    'http://awseb-awseb-1i6bdzq4l7mkw-1181721423.us-east-1.elb.amazonaws.com'; /* Load Balancer Link */
 
   constructor(private httpClient: HttpClient) {}
 

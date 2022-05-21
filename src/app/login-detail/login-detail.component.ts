@@ -15,6 +15,7 @@ export class LoginDetailComponent implements OnInit {
   type = 'Sign In';
   errorMessage = '';
   message: boolean = false;
+  visible: boolean = true;
   constructor(
     private router: Router,
     private authSerivice: PensionAllService
@@ -24,10 +25,23 @@ export class LoginDetailComponent implements OnInit {
     this.params = window.location.pathname === '/register';
     this.type = this.params ? 'Submit' : 'Sign In';
   }
+
+  onChangePassword(event: any) {
+    let show = event.data != null ? 'visibility_off' : '';
+    event.target.nextSibling.innerText = show;
+  }
+
+  onIconCkick(event: any) {
+    let show = this.visible ? 'visibility' : 'visibility_off';
+    let type = show === 'visibility' ? 'text' : 'password';
+    event.srcElement.innerText = show;
+    event.target.parentElement.children[1].attributes.type.value = type;
+    this.visible = !this.visible;
+  }
+
   onClickSubmit(loginUser: NgForm) {
     let { userId, password, confirmPassword } = loginUser.form.value;
-    console.log(loginUser);
-    
+
     if (userId?.length > 3 && password?.length > 3 && this.type === 'Sign In') {
       this.authSerivice.gettoken(userId, password).subscribe(
         (token: string) => (GlobalComponent.token = token),
@@ -44,17 +58,16 @@ export class LoginDetailComponent implements OnInit {
 
     if (
       userId?.length > 3 &&
-      password != "" &&
+      password != '' &&
       password === confirmPassword &&
       this.type === 'Submit'
     ) {
       this.authSerivice.doRegister(userId, password).subscribe(
         (data) => {
-          if (data != undefined && data?.message === "Register" ) {
+          if (data != undefined && data?.message === 'Register') {
             this.errorMessage = 'Successfully Registered';
             this.message = true;
-          }
-          else{
+          } else {
             this.errorMessage = 'User ID already taken ';
           }
         },
@@ -77,11 +90,12 @@ export class LoginDetailComponent implements OnInit {
         'UserId and Password Should be greater than or equal 4 Characters';
     }
 
-    if(userId === "" || password === "" || confirmPassword === ""){
-      this.errorMessage = "UserId and Password Should not empty"
+    if (userId === '' || password === '' || confirmPassword === '') {
+      this.errorMessage = 'UserId and Password Should not empty';
     }
 
-    setTimeout(()=>{this.errorMessage = '', this.message=false} , 3000)
-
+    setTimeout(() => {
+      (this.errorMessage = ''), (this.message = false);
+    }, 3000);
   }
 }

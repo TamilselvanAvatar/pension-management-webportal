@@ -1,12 +1,1 @@
-{
-    "/loin":{
-        "target":"http://pensionauthservicerevised-env.eba-xxhwvahp.us-east-1.elasticbeanstalk.com",
-        "secure":false,
-        "logLevel":"debug"
-    },
-    "/register":{
-        "target":"http://pensionauthservicerevised-env.eba-xxhwvahp.us-east-1.elasticbeanstalk.com",
-        "secure":false,
-        "logLevel":"debug"
-    }
-}
+{}

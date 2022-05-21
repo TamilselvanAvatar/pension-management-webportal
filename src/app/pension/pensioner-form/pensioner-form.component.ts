@@ -28,8 +28,7 @@ export class PensionerFormComponent implements OnInit {
     ]),
     aadhaar: new FormControl(this.pensioner?.aadhaar, [
       Validators.required,
-      Validators.minLength(12),
-      Validators.maxLength(12),
+      Validators.pattern(/\d{12}/)
     ]),
     dob: new FormControl(this.pensioner?.dob, [Validators.required]),
     salaryEarned: new FormControl(this.pensioner?.salaryEarned, [
@@ -53,8 +52,7 @@ export class PensionerFormComponent implements OnInit {
     ),
     accountNumber: new FormControl(this.pensioner?.bankDetail?.accountNumber, [
       Validators.required,
-      Validators.minLength(6),
-      Validators.maxLength(15),
+      Validators.pattern(/\d{6,15}/),
     ]),
     bankType: new FormControl(
       this.pensioner?.bankDetail?.bankType
@@ -73,6 +71,7 @@ export class PensionerFormComponent implements OnInit {
       ? [this.pensioner?.bankDetail?.name]
       : this.bankName;
   }
+
 
   onSubmit() {
     let { bankName, accountNumber, bankType, pensionerName } =
@@ -95,7 +94,7 @@ export class PensionerFormComponent implements OnInit {
             if (data.message === 'Saved') {
               this.message = 'Saved Pensioner Successfully';
               this.enable = true;
-              setTimeout(()=>{this.enable = false},10000)
+              setTimeout(()=>{this.enable = false,this.message = ''},10000)
             }
           },
           (err) => {
@@ -105,6 +104,7 @@ export class PensionerFormComponent implements OnInit {
             else{
               this.message = "Server Error"
             }
+            setTimeout(()=>{this.message = ''},1000)
           }
         );
     }
@@ -116,7 +116,7 @@ export class PensionerFormComponent implements OnInit {
             if (data.message === 'Updated') {
               this.message = 'Updated Pensioner Successfully';
               this.enable = true;
-              setTimeout(()=>{this.enable = false},1000)
+              setTimeout(()=>{this.enable = false , this.message = ''},1000)
             }
           },
           (err) => {
@@ -126,6 +126,7 @@ export class PensionerFormComponent implements OnInit {
             else{
               this.message = "Server Error"
             }
+            setTimeout(()=>{this.message = ''},1000)
           }
         );
     }

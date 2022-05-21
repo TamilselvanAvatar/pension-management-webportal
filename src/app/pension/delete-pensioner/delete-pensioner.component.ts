@@ -39,7 +39,7 @@ export class DeletePensionerComponent implements OnInit {
       })
     }
     else{
-      this.message = "Aadhaar Number Should 12 digits"
+      this.message = "Aadhaar Number Should be 12 digits"
     }
   }
 

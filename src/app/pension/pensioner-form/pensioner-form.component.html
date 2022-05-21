@@ -1,5 +1,5 @@
 <div class="container">
-    <p class="m-3 text-center fst-italic " [ngClass] = "  enable  ? 'text-success fw-bold' : 'text-danger fw-bold' " *ngIf="enable">{{message}}</p>
+    <p class="m-3 text-center fst-italic " [ngClass] = "  enable  ? 'text-success fw-bold' : 'text-danger fw-bold' " *ngIf=" message != '' ">{{message}}</p>
     <form [formGroup]="pensionerDetails" (ngSubmit)="onSubmit()">
         <div class="row mt-lg-3">
             <div class="col-6 bg-outline-success">
@@ -15,7 +15,7 @@
                 </p>
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="aadhaar">Aadhaar Number </label>
-                    <input class="form-control" type="number" id="aadhaar" [readonly]="pensioner != undefined"
+                    <input class="form-control" type="text" id="aadhaar" [readonly]="pensioner != undefined"
                         formControlName="aadhaar">
                 </div>
                 <p class="text-danger fst-italic fw-bold text-center"
@@ -83,7 +83,7 @@
                 </div>
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="account">Account Number </label>
-                    <input class="form-control" type="number" id="account" [readonly]="pensioner != undefined"
+                    <input class="form-control" type="text" id="account" [readonly]="pensioner != undefined"
                         formControlName="accountNumber">
                 </div>
                 <p class="text-danger fst-italic fw-bold text-center"

@@ -1,30 +1,46 @@
 <form #loginUser="ngForm" (ngSubmit)="onClickSubmit(loginUser)">
 
     <div class="form-group m-3" *ngIf=" errorMessage != '' ">
-        <p class=" fst-italic fw-bold text-center" ngClass="{{ message ? 'text-success':'text-danger' }}" >{{errorMessage}}</p>
+        <p class=" fst-italic fw-bold text-center" ngClass="{{ message ? 'text-success':'text-danger' }}">
+            {{errorMessage}}</p>
     </div>
-    
-    <div class="form-group m-3">
+
+    <div class="form-group mb-3">
         <label for="userId">User ID</label>
         <input type="text" class="form-control" id="userId" aria-describedby="userIdHelp" placeholder="Provide User ID"
             ngModel name="userId">
-        <small id="userIdHelp" class="form-text text-muted"></small>
     </div>
 
-    <div class="form-group m-3">
+    <div class="form-group ">
         <label for="Password1">Password</label>
-        <input type="password" class="form-control" id="Password1" value="" placeholder="Enter Password" ngModel
-            name="password">
+        <input type="password" class="form-control" id="Password1" (input) = "onChangePassword($event)" placeholder="Enter Password" ngModel
+            name="password" aria-colspan="togglePassword">
+        <i class="material-icons" 
+                style="font-size: 26px;
+                       font-weight: 100;
+                       position: relative;
+                       right: -95%;
+                       top: -30px;"
+                (click)="onIconCkick($event)"
+        >{{visible}}</i>
     </div>
 
-    <div class="form-group m-3" *ngIf="params">
+    <div class="form-group " *ngIf="params">
         <label for="Password2">Confirm Password</label>
-        <input type="password" class="form-control" id="Password2" value="" placeholder="Re-Enter Password" ngModel
+        <input type="password" class="form-control" id="Password2" (input) = "onChangePassword($event)" placeholder="Re-Enter Password" ngModel
             name="confirmPassword">
+        <i class="material-icons" 
+                style="font-size: 26px;
+                       font-weight: 100;
+                       position: relative;
+                       right: -95%;
+                       top: -30px;"
+                (click)="onIconCkick($event)"
+        >{{visible}}</i>
     </div>
 
-    <div class="form-group m-3">
-        <button type="submit" class="col-4 btn btn-primary w-25 " >{{type}}</button>
+    <div class="form-group ">
+        <button type="submit" class="col-4 btn btn-primary w-25 ">{{type}}</button>
         <a routerLink="/" class="m-2 btn btn-info w-25">Back</a>
     </div>
 
